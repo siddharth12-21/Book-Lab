@@ -13,7 +13,7 @@ public class Book
     String pigWord = "";
     if (word1.charAt(0)=='a'||word1.charAt(0)=='e'||word1.charAt(0)=='i'||word1.charAt(0)=='o'||word1.charAt(0)=='u')
     {
-      pigWord = word1.substring(1,word.length())+word.substring(0,1)+"yay";
+      pigWord = word1+"yay";
       return pigWord;
     }
     else
@@ -38,9 +38,11 @@ public class Book
 
   public String translateWord(String word)    //to share with class
   {
-    String convertedWord = "";
-
-    return convertedWord;
+    String convertedWord = pigLatin(word);
+    String firstLetter = convertedWord.substring(0,1);
+    String rest = convertedWord.substring(1,convertedWord.length());
+    String capitalized = firstLetter.toUpperCase()+rest;
+    return capitalized;
   }
 
   public String translateSentence(String sentence)
