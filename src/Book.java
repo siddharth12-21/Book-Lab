@@ -30,10 +30,23 @@ public class Book
     }
   }
   
-  public int endPunctuation(String word)  //return the index of where the punctuation is at the end of a String. If it is all punctuation return 0, if there is no punctuation return -1
+  public String endPunctuation(String word)  //return the index of where the punctuation is at the end of a String. If it is all punctuation return 0, if there is no punctuation return -1
   {
-
-    return -1;
+    int ender = 0;
+    String punc = "";
+    for (int i=0; i<word.length();i++){
+      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'){
+        ender = i;
+        break;
+      }
+      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'){
+        punc = punc+word.charAt(i);
+      }
+    }
+    String only = word.substring(0,ender);
+    String only1 = translateWord(only);
+    String only2 = only1 + punc;
+    return only2;
   }
 
   public String translateWord(String word)    //to share with class
