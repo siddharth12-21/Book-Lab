@@ -10,8 +10,15 @@ public class Book
   {
     String word1 = word.toLowerCase();
     int inx = 0;
+    String digits = "0123456789";
     String pigWord = "";
-    if (word1.charAt(0)=='a'||word1.charAt(0)=='e'||word1.charAt(0)=='i'||word1.charAt(0)=='o'||word1.charAt(0)=='u')
+    if (word1.length()==0){
+      return word;
+    }
+    if (digits.indexOf(word1.charAt(0))>=0){
+      return word;
+    }
+    if (word1.charAt(0)=='a'||word1.charAt(0)=='e'||word1.charAt(0)=='i'||word1.charAt(0)=='o'||word1.charAt(0)=='u'||word1.charAt(0)=='y')
     {
       pigWord = word1+"yay";
       return pigWord;
@@ -24,13 +31,12 @@ public class Book
           break;
         }
       }
-      int remain = word.length()-inx;
       String piggy = word1.substring(inx)+word1.substring(0,inx)+"ay";
       return piggy;
     }
   }
   
-  public String endPunctuation(String word)  //return the index of where the punctuation is at the end of a String. If it is all punctuation return 0, if there is no punctuation return -1
+  public String finalWordTranslation(String word)  //return the index of where the punctuation is at the end of a String. If it is all punctuation return 0, if there is no punctuation return -1
   {
     int ender = 0;
     String punc = "";
@@ -39,23 +45,34 @@ public class Book
         ender = i;
         break;
       }
-      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'){
-        punc = punc+word.charAt(i);
+      else{
+        ender=-1;
       }
     }
-    String only = word.substring(0,ender);
-    String only1 = translateWord(only);
-    String only2 = only1 + punc;
-    return only2;
+    if (ender==-1){
+      return capitalizeWord(word);
+    }
+    else{
+      punc = word.substring(ender,word.length());
+      String only = word.substring(0,ender);
+      String only1 = capitalizeWord(only);
+      String only2 = only1 + punc;
+      return only2;
+    }
   }
 
-  public String translateWord(String word)    //to share with class
+  public String capitalizeWord(String word)    //to share with class
   {
     String convertedWord = pigLatin(word);
-    String firstLetter = convertedWord.substring(0,1);
-    String rest = convertedWord.substring(1,convertedWord.length());
-    String capitalized = firstLetter.toUpperCase()+rest;
-    return capitalized;
+    if (Character.isUpperCase(word.charAt(0))==true){
+      String firstLetter = convertedWord.substring(0,1);
+      String rest = convertedWord.substring(1,convertedWord.length());
+      String capitalized = firstLetter.toUpperCase()+rest;
+      return capitalized;
+    }
+    else{
+      return convertedWord;
+    }
   }
 
   public String translateSentence(String sentence)
