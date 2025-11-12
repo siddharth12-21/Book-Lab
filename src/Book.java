@@ -41,7 +41,7 @@ public class Book
     int ender = 0;
     String punc = "";
     for (int i=0; i<word.length();i++){
-      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'){
+      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'||word.charAt(i)==','||word.charAt(i)==':'||word.charAt(i)==';'||word.charAt(i)=='"'){
         ender = i;
         break;
       }
