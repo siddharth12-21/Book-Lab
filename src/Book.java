@@ -49,22 +49,6 @@ public class Book
       pigWord = word1+"yay";
       return pigWord;
     }
-    //special symbol start case
-    else if(word1.charAt(0)=='“'||word1.charAt(0)=='('){
-      for (int i = 1; i<word1.length();i++){
-        if (word1.charAt(i)=='a'||word1.charAt(i)=='e'||word1.charAt(i)=='i'||word1.charAt(i)=='o'||word1.charAt(i)=='u'){
-          inx = i;
-          break;
-        }
-      }
-      if(word1.length()>1){
-        String piggy = word1.substring(0,1)+word1.substring(inx,word1.length())+word1.substring(1,inx)+"ay";
-        return piggy;
-      }
-      else{
-        return word1+"yay";
-      }
-    }
     // only special character:
     if (alphabet.indexOf(word1.charAt(0))<0){
       return word;
