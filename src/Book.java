@@ -15,14 +15,19 @@ public class Book
   }
   private void readBook(String link){
     try{
+      int counter = 0;
       URL url = new URL(link);
       Scanner s = new Scanner(url.openStream());
       while(s.hasNext()){
         String text = s.nextLine();
+        String words[]=text.split(" ");
+        counter += words.length;
         text = translateSentence(text);
         System.out.println(text);
         book+=text;
       }
+      System.out.println();
+      System.out.println("Total words: " + counter);
     }
     catch(IOException ex){
       ex.printStackTrace();
@@ -48,6 +53,11 @@ public class Book
     {
       pigWord = word1+"yay";
       return pigWord;
+    }
+    //special character start case
+    if (word1.charAt(0)=='“'||word1.charAt(0)=='(')
+    {
+      return word1.substring(0,1)+finalWordTranslation(word1.substring(1,word.length()));
     }
     // only special character:
     if (alphabet.indexOf(word1.charAt(0))<0){
