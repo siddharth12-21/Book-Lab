@@ -33,6 +33,7 @@ public class Book
     String word1 = word.toLowerCase();
     int inx = 0;
     String digits = "0123456789";
+    String alphabet = "abcdefghijklmnopqrstuvwxyz";
     String pigWord = "";
     //empty string case
     if (word1.length()==0){
@@ -56,8 +57,17 @@ public class Book
           break;
         }
       }
-      String piggy = word1.substring(inx)+word1.substring(0,inx)+"ay";
-      return piggy;
+      if(word1.length()>1){
+        String piggy = word1.substring(0,1)+word1.substring(inx,word1.length())+word1.substring(1,inx)+"ay";
+        return piggy;
+      }
+      else{
+        return word1+"yay";
+      }
+    }
+    // only special character:
+    if (alphabet.indexOf(word1.charAt(0))<0){
+      return word;
     }
 
     //normal consonant start case
@@ -78,7 +88,7 @@ public class Book
     int ender = 0;
     String punc = "";
     for (int i=0; i<word.length();i++){
-      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'||word.charAt(i)==','||word.charAt(i)==':'||word.charAt(i)==';'||word.charAt(i)=='”'||word.charAt(i)==')'){
+      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'||word.charAt(i)==','||word.charAt(i)==':'||word.charAt(i)==';'){
         ender = i;
         break;
       }
