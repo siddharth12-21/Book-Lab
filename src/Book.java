@@ -63,7 +63,7 @@ public class Book
       return pigWord;
     }
     //special character start case
-    if (word1.charAt(0)=='“'||word1.charAt(0)=='(')
+    if (word1.charAt(0)=='“'||word1.charAt(0)=='('||word1.charAt(0)=='[')
     {
       return word1.substring(0,1)+finalWordTranslation(word1.substring(1,word.length()));
     }
@@ -90,7 +90,7 @@ public class Book
     int ender = 0;
     String punc = "";
     for (int i=0; i<word.length();i++){
-      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'||word.charAt(i)==','||word.charAt(i)==':'||word.charAt(i)==';'){
+      if (word.charAt(i)=='!'||word.charAt(i)=='?'||word.charAt(i)=='.'||word.charAt(i)==','||word.charAt(i)==':'||word.charAt(i)==';'||word.charAt(i)=='”'||word.charAt(i)==']'){
         ender = i;
         break;
       }
@@ -125,7 +125,7 @@ public class Book
       String capitalized = firstLetter.toUpperCase()+rest;
       return capitalized;
     }
-    else if((word.charAt(0)=='“'||word.charAt(0)=='(' && Character.isUpperCase(word.charAt(1))==true)){
+    else if((word.charAt(0)=='“'||word.charAt(0)=='('||word.charAt(0)=='[' && Character.isUpperCase(word.charAt(1))==true)){
       String firstLetter = convertedWord.substring(1,2);
       String rest = convertedWord.substring(2,convertedWord.length());
       String capitalized = word.charAt(0)+firstLetter.toUpperCase()+rest;
