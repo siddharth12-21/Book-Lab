@@ -6,6 +6,8 @@
 import java.io.IOException;
 import java.util.Scanner;
 import java.net.URL;
+import java.io.PrintWriter;
+import java.io.File;
 
 public class Book
 {
@@ -13,11 +15,13 @@ public class Book
   public Book(String url){
     readBook(url);
   }
-  private void readBook(String link){
+  private File readBook(String link){
     try{
       int counter = 0;
       URL url = new URL(link);
       Scanner s = new Scanner(url.openStream());
+      File translated = new File("translated.txt");
+      PrintWriter writer = new PrintWriter(translated);
       while(s.hasNext()){
         String text = s.nextLine();
         String words[]=text.split(" ");
@@ -25,12 +29,16 @@ public class Book
         text = translateSentence(text);
         System.out.println(text);
         book+=text;
+        writer.println(text);
       }
+      writer.close();
       System.out.println();
       System.out.println("Total words: " + counter);
+      return translated;
     }
     catch(IOException ex){
       ex.printStackTrace();
+      return null;
     }
   }
   public String pigLatin(String word)
